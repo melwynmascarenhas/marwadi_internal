@@ -21,6 +21,7 @@ import {
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import { easing } from 'jquery'
 Swiper.use([
   Navigation,
   Pagination,
@@ -51,52 +52,54 @@ function enableScrolling() {
   //
 }
 
-//PRELOADER
-const numberElement = document.querySelector('.number')
-let counter = 0
-const duration = 3000 // 4 seconds
-const interval = duration / 100 // interval for each increment
+enableScrolling()
 
-function updateCount() {
-  const updateCounter = setInterval(() => {
-    counter++
-    numberElement.textContent = counter
-    if (counter === 100) {
-      clearInterval(updateCounter)
-    }
-  }, interval)
-}
+// //PRELOADER
+// const numberElement = document.querySelector('.number')
+// let counter = 0
+// const duration = 3000 // 4 seconds
+// const interval = duration / 100 // interval for each increment
 
-gsap.set('svg rect', {
-  width: '0%',
-})
+// function updateCount() {
+//   const updateCounter = setInterval(() => {
+//     counter++
+//     numberElement.textContent = counter
+//     if (counter === 100) {
+//       clearInterval(updateCounter)
+//     }
+//   }, interval)
+// }
 
-const preloaderTL = gsap.timeline()
+// gsap.set('svg rect', {
+//   width: '0%',
+// })
 
-preloaderTL
-  .to('svg rect', {
-    duration: 3,
-    width: '100%', // Animate the width to cover the SVG
-    ease: 'power1.inOut',
-    onStart: updateCount,
-  })
-  .to(
-    '.pre-loader',
-    {
-      delay: 0.5,
-      duration: 1,
-      opacity: 0,
-      ease: 'power1.inOut',
-      onComplete: enableScrolling,
-    },
-    '>'
-  )
-//
+// const preloaderTL = gsap.timeline()
+
+// preloaderTL
+//   .to('svg rect', {
+//     duration: 3,
+//     width: '100%', // Animate the width to cover the SVG
+//     ease: 'power1.inOut',
+//     onStart: updateCount,
+//   })
+//   .to(
+//     '.pre-loader',
+//     {
+//       delay: 0.5,
+//       duration: 1,
+//       opacity: 0,
+//       ease: 'power1.inOut',
+//       onComplete: enableScrolling,
+//     },
+//     '>'
+//   )
+// //
 
 const horizontalSection = document.querySelector('.is-saboteurs')
 const wrapper = horizontalSection.querySelector('.wrapper')
 const items = wrapper.querySelectorAll('.item')
-document.body.style.overflow = 'hidden'
+
 const bulletWrapper = document.querySelector('.swiper-bullet-wrapper')
 bulletWrapper.style.borderRadius = '100vw'
 bulletWrapper.style.overflow = 'hidden'
